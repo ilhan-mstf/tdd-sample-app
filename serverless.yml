@@ -1,0 +1,39 @@
+service: tdd-sample-app
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: eu-central-1
+  memorySize: 128
+  timeout: 30
+
+functions:
+  hello:
+    handler: handler.hello_endpoint
+    events:
+      - http:
+          path: hello
+          method: get
+  sum:
+    handler: handler.sum_endpoint
+    events:
+      - http:
+          path: sum
+          method: post
+
+package:
+  exclude:
+    - .pytest_cache/**
+    - __pycache__/**
+    - tests/
+    - venv/**
+    - node_modules/**
+    - .covarage
+    - .gitignore
+    - .travis.yml
+    - LICENSE
+    - package.json
+    - package-lock.json
+    - README.me
+    - requirements.txt
+    - serverless.yml
