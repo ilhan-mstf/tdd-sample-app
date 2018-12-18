@@ -16,7 +16,7 @@ cache:
 
 after_success:
   - codecov
-  - npm install serverless
+  - npm install -g serverless
   - serverless deploy
 
 branches:
