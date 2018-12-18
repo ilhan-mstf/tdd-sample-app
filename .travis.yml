@@ -9,8 +9,15 @@ install:
 script: 
   - pytest --cov=./
 
+cache:
+  directories:
+    - node_modules
+    - .serverless
+
 after_success:
   - codecov
+  - npm install serverless
+  - serverless deploy
 
 branches:
   only:
