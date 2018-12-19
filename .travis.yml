@@ -18,7 +18,7 @@ jobs:
   include:
     - if: branch = master
       env: DEPLOY_STAGE=production
-    - if: branch =~ release/^v\d+\.\d+(\.\d+)?(-\S*)?$/
+    - if: branch =~ release/^v\d+\.\d+(\.\d+)?(-\S*)?$
       env: DEPLOY_STAGE=beta
     - if: branch = dev
       env: DEPLOY_STAGE=dev
@@ -31,5 +31,5 @@ after_success:
 branches:
   only:
     - master
-    - release/^v\d+\.\d+(\.\d+)?(-\S*)?$/
+    - release/^v\d+\.\d+(\.\d+)?(-\S*)?$
     - dev
