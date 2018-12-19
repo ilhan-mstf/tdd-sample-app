@@ -14,15 +14,18 @@ cache:
     - node_modules
     - .serverless
 
+jobs:
+  include:
+    - if: branch = master
+      env: DEPLOY_STAGE=production
+    - if: branch =~ release/^v\d+\.\d+(\.\d+)?(-\S*)?$/
+      env: DEPLOY_STAGE=beta
+    - if: branch = dev
+      env: DEPLOY_STAGE=dev
+
 after_success:
   - codecov
   - npm install -g serverless
-  - if: branch = master
-    - env: DEPLOY_STAGE='production'
-  - if: branch =~ release/^v\d+\.\d+(\.\d+)?(-\S*)?$/
-    - env: DEPLOY_STAGE='beta'
-  - if: branch = dev
-    - env: DEPLOY_STAGE='dev'
   - serverless deploy --stage $DEPLOY_STAGE
 
 branches:
