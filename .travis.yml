@@ -27,9 +27,3 @@ after_success:
   - codecov
   - npm install -g serverless
   - serverless deploy --stage $DEPLOY_STAGE
-
-branches:
-  only:
-    - master
-    - /^release\/v\d+\.\d+(\.\d+)?$/
-    - dev
